@@ -57,11 +57,21 @@ textarea {
     padding: 0 35px;
 }
 
-.dropdown-menu {
+#list-menu-nav {
+    position: absolute;
+    z-index: 1000;
     display: none;
-    border: 0px solid;
-    position: relative;
-    top: 4.5em;
+    min-width: 10rem;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
     background: #efd7bd !important;
 }
 .navbar-collapse ul li a {

@@ -3,6 +3,5 @@
 }
 
 function openMenu() {
-    document.querySelector('.dropdown-menu').style = "display: block;"
-
+    document.querySelector('.dropdown-toggle').style = "display: block;"
 }

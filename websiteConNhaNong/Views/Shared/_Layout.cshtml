@@ -38,11 +38,11 @@
                     <li>@Html.ActionLink("TRANG CHỦ", "Index", "Home")</li>
                     <li>@Html.ActionLink("VỀ CHÚNG TÔI", "About", "Home")</li>
                 </ul>
-                    <li class="nav-item dropdown" onclick="openMenu()">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropdown" id="nav-item" onclick= openMenu()>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @Html.ActionLink("SẢN PHẨM","Contact", "Home")
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" id="list-menu-nav" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">QUÀ TẶNG CHÂN TÌNH</a>
                             <a class="dropdown-item" href="#">HẠT SẤY KHÔ</a>
                             <a class="dropdown-item" href="#">CAFFE</a>
