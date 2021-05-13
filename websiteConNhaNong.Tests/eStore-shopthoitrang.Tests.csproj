@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\websiteConNhaNong\websiteConNhaNong.csproj">
+    <ProjectReference Include="..\websiteConNhaNong\eStore-shopthoitrang.csproj">
       <Project>{95B8AAA5-2AC5-4B7E-B732-9109833167C8}</Project>
-      <Name>websiteConNhaNong</Name>
+      <Name>eStore-shopthoitrang</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
