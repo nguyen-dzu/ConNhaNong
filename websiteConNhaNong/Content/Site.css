@@ -1,9 +1,17 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 20px;
 }
-
-/* Set padding to keep content from hitting the edges */
+li{
+    list-style:none;
+}
+.navbar .container {
+    max-width: 100%;
+    margin-right: 5em;
+    margin-left: 5em;
+    padding: 0 16px
+}
+/* Set padding to keep cont ent from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -22,3 +30,64 @@ select,
 textarea {
     max-width: 280px;
 }
+.img {
+    width: 100%;
+}
+.navbar-expand-lg {
+    display: flex;
+    justify-content: flex-start;
+}
+.bg-light {
+    background: #efd7bd !important;
+}
+
+.navbar-brand{
+    width: 15%;
+}
+
+.navbar-brand img {
+    width: 50%;
+}
+.form-inline {
+    display: flex;
+}
+
+.navbar-collapse ul li a:hover  {
+    text-decoration: underline;
+    color: #004012;
+}
+
+.navbar-nav {
+    padding: 0 35px;
+}
+
+.dropdown-menu {
+    display: none;
+    border: 0px solid;
+    position: relative;
+    top: 4.5em;
+    background: #efd7bd !important;
+}
+.navbar-collapse ul li a {
+    padding-right: 10px;
+    color: #004012;
+    text-decoration: none;
+}
+.dropdown, .dropend, .dropstart, .dropup{
+    text-decoration: none;
+    position: relative;
+    display: flex;
+}
+.dropdown a{
+    text-decoration: none;
+    color:#004012;
+    position: relative;
+    text-align: center;
+}
+.nav-item .nav-link{
+    color: #004012;
+}
+    .nav-item .nav-link :hover {
+        text-decoration: underline;
+        color: #004012;
+    }
