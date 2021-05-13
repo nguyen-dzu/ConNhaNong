@@ -20,12 +20,11 @@
             integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
     <title>Website_ConNhaNong</title>
 
 </head>
 <body>
-     <div class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg navbar-light bg-light">
+     <div class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg navbar-light bg">
             <div class="container">
                 <a class="navbar-brand" href="../../Home">
                     <img src="../../assets/images/logo.png" alt="logo">
@@ -34,15 +33,14 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li>@Html.ActionLink("TRANG CHỦ", "Index", "Home")</li>
                     <li>@Html.ActionLink("VỀ CHÚNG TÔI", "About", "Home")</li>
-                    </ul>
-                    <li class="nav-item dropdown" onclick="openMenu()" onclick="closeMenu()">
+                </ul>
+                    <li class="nav-item dropdown" onclick="openMenu()">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @Html.ActionLink("SẢN PHẨM", "Contact", "Home")
+                            @Html.ActionLink("SẢN PHẨM","Contact", "Home")
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">QUÀ TẶNG CHÂN TÌNH</a>
@@ -65,9 +63,6 @@
                 </form>
                 <div
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        
-                    </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>

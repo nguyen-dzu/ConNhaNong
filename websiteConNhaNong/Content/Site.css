@@ -37,16 +37,12 @@ textarea {
     display: flex;
     justify-content: flex-start;
 }
-.bg-light {
+.bg {
     background: #efd7bd !important;
 }
 
-.navbar-brand{
-    width: 15%;
-}
-
 .navbar-brand img {
-    width: 50%;
+    width: 40%;
 }
 .form-inline {
     display: flex;
@@ -69,11 +65,14 @@ textarea {
     background: #efd7bd !important;
 }
 .navbar-collapse ul li a {
-    padding-right: 10px;
+    padding-right: 15px;
     color: #004012;
     text-decoration: none;
 }
-.dropdown, .dropend, .dropstart, .dropup{
+.navbar-collapse .navbar-nav{
+    padding: 0;
+}
+.dropdown, .dropend, .dropstart, .dropup {
     text-decoration: none;
     position: relative;
     display: flex;
@@ -86,8 +85,20 @@ textarea {
 }
 .nav-item .nav-link{
     color: #004012;
+    display: flex;
 }
-    .nav-item .nav-link :hover {
-        text-decoration: underline;
-        color: #004012;
-    }
+.nav-item :hover {
+    text-decoration: underline;
+    color: #004012;
+}
+.nav-item a:hover{
+    text-decoration: underline;
+    color: #004012 !important;
+}
+.navbar-collapse .collapse{
+    padding: 0 16px;
+}
+.navbar-brand{
+    width:  20%;
+    margin-right: 0 !important;
+}
