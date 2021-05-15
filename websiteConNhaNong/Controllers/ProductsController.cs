@@ -10,6 +10,7 @@ using websiteConNhaNong.Models;
 
 namespace websiteConNhaNong.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private CT25Team18Entities1 db = new CT25Team18Entities1();
@@ -17,7 +18,8 @@ namespace websiteConNhaNong.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var model = db.Products.ToList();
+            return View(model);
         }
 
         // GET: Products/Details/5
