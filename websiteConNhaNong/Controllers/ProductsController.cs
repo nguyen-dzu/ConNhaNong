@@ -10,7 +10,7 @@ using websiteConNhaNong.Models;
 
 namespace websiteConNhaNong.Controllers
 {
-    [Authorize]
+    [Authorize()]
     public class ProductsController : Controller
     {
         private CT25Team18Entities1 db = new CT25Team18Entities1();
