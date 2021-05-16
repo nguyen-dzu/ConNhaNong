@@ -21,7 +21,12 @@ namespace websiteConNhaNong.Controllers
             var model = db.Products.ToList();
             return View(model);
         }
-
+        [AllowAnonymous]
+        public ActionResult Index2()
+        {
+            var model = db.Products.ToList();
+            return View(model);
+        }
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {

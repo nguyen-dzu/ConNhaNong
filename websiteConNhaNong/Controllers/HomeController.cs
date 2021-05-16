@@ -12,7 +12,6 @@ namespace websiteConNhaNong.Controllers
         {
             return View();
         }
-        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

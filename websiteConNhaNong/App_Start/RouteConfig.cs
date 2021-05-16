@@ -16,7 +16,7 @@ namespace websiteConNhaNong
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Products", action = "Index2", id = UrlParameter.Optional }
             );
         }
     }

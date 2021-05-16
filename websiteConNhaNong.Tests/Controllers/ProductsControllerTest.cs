@@ -25,5 +25,19 @@ namespace websiteConNhaNong.Tests.Controllers
             var db = new CT25Team18Entities1();
             Assert.AreEqual(db.Products.Count(), model.Count);
         }
+        [TestMethod]
+        public void TestIndex2()
+        {
+            var controller = new ProductsController();
+
+            var result = controller.Index2() as ViewResult;
+            Assert.IsNotNull(result);
+
+            var model = result.Model as List<Product>;
+            Assert.IsNotNull(model);
+
+            var db = new CT25Team18Entities1();
+            Assert.AreEqual(db.Products.Count(), model.Count);
+        }
     }
 }
