@@ -77,7 +77,21 @@
                                                 <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                             </div>
                                         </li>
-                                        <li class="d-none d-lg-block"> <a href="@Url.Action("Login", "Account")" class="btn header-btn">Sign in</a></li>
+                                        <li class="d-none d-lg-block">
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <a class="btn header-btn" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("Login", "Account")" class="btn header-btn">Sign in</a>
+                                            }
+
+                                        </li>
                                     </ul>
                                 </div>
                                 <!-- Mobile Menu -->
@@ -93,7 +107,11 @@
         </header>
 
         <main>
-            @RenderBody()
+            <section class="latest-product-area padding-bottom">
+                <div class="container">
+                    @RenderBody()
+                </div>
+             </section>
 
         </main>
         <footer>

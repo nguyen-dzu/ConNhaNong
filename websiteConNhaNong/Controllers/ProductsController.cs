@@ -55,6 +55,7 @@ namespace websiteConNhaNong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Name,Price,Description")] Product product)
         {
+            ValidateProduct(product);
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
@@ -63,6 +64,12 @@ namespace websiteConNhaNong.Controllers
             }
 
             return View(product);
+        }
+
+        private void ValidateProduct(Product product)
+        {
+            if (product.Price < 0)
+                ModelState.AddModelError("Price", "Price is less than zero");
         }
 
         // GET: Products/Edit/5
