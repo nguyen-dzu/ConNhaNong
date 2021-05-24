@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ConNhaNong.Models.product>
+
+@{
+   
+    ViewBag.Title = "Home Page";
+}
+
+<section class="latest-product-area padding-bottom">
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-end align-items-end">
+            <!-- Section Tittle -->
+            <div class="col-xl-4 col-lg-5 col-md-5">
+                <div class="section-tittle mb-30">
+                    <h2>Latest Products</h2>
+                </div>
+            </div>
+
+        </div>
+        <!-- Nav Card -->
+        <div class="tab-content" id="nav-tabContent">
+            <div class="row">
+                <div class="card-deck">
+                    <div class="row">
+                        @foreach (var items in Model)
+                        {
+                            <div class="col-lg-3">
+                                <div class="card mb-30">
+                                    <!-- set a width on the image otherwise it will expand to full width       -->
+                                    <img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="400"/>
+                                    <div class="card-body text-center">
+                                            <h4 class="card-title">@items.name_product</h4>
+                                            <p class="card-text">@items.price</p>
+                                            @Html.ActionLink("Chi tiết", "Details", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-success" })
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="col-lg-1"></div>
+                        }
+                    </div>
+                    </div>
+            </div>
+        <!-- End Nav Card -->
+        </div>
+    </div>
+</section>
