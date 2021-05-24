@@ -12,7 +12,7 @@ namespace websiteConNhaNong.Controllers
 {
     public class AspNetRolesController : Controller
     {
-        private CT25Team18Entities db = new CT25Team18Entities();
+        private CT25Team18Entities1 db = new CT25Team18Entities1();
 
         // GET: AspNetRoles
         public ActionResult Index()

@@ -7,19 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using websiteConNhaNong.Models;
+using System.Transactions;
 
 namespace websiteConNhaNong.Controllers
 {
+    [Authorize()]
     public class ProductsController : Controller
     {
-        private CT25Team18Entities db = new CT25Team18Entities();
+        private CT25Team18Entities1 db = new CT25Team18Entities1();
 
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var model = db.Products.ToList();
+            return View(model);
         }
-
+        [AllowAnonymous]
+        public ActionResult Index2()
+        {
+            var model = db.Products.ToList();
+            return View(model);
+        }
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,6 +43,12 @@ namespace websiteConNhaNong.Controllers
             return View(product);
         }
 
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+
         // GET: Products/Create
         public ActionResult Create()
         {
@@ -44,18 +58,40 @@ namespace websiteConNhaNong.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Name,Price,Description")] Product product)
+        public ActionResult Create([Bind(Include = "id,Name,Price,Description")] Product product, HttpPostedFileBase picture)
         {
+            ValidateProduct(product);
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.Products.Add(product);
+                        db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + product.id);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else ModelState.AddModelError("", "Khong tim thay hinh anh!");
+                
             }
 
             return View(product);
+        }
+
+        private const string PICTURE_PATH = "~/Upload/Products/";
+
+        private void ValidateProduct(Product product)
+        {
+            if (product.Price < 0)
+                ModelState.AddModelError("Price", "Price is less than zero");
         }
 
         // GET: Products/Edit/5

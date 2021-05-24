@@ -301,7 +301,7 @@ a {
 
 /* line 83, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a:hover {
-  color: #fff;
+  color: crimson;
 }
 
 /* line 86, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -315,7 +315,7 @@ a:hover,
 /* line 92, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a,
 button {
-  color: #fff;
+  color: #000;
   outline: medium none;
 }
 

@@ -13,10 +13,10 @@ namespace websiteConNhaNong.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CT25Team18Entities : DbContext
+    public partial class CT25Team18Entities1 : DbContext
     {
-        public CT25Team18Entities()
-            : base("name=CT25Team18Entities")
+        public CT25Team18Entities1()
+            : base("name=CT25Team18Entities1")
         {
         }
     

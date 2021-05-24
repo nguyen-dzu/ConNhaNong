@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Products list</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,13 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Products name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
+        </th>
+        <th>
+            Picture
         </th>
         <th></th>
     </tr>
@@ -26,13 +29,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @item.Name
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @item.Price
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @if (item.Description != null && item.Description.Length > 100)
+            {
+                @item.Description.Substring(0, 100)
+            }
+            else
+            {
+                @item.Description
+            }
+        </td>
+        <td>
+            <img src="@Url.Action("Picture", new {item.id })" width="37px" height="40px" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
