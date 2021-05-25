@@ -1,0 +1,47 @@
+﻿@model ConNhaNong.Models.product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    @using (Html.BeginForm("AddCart", "Product",new {ID_P=Model.ID }))
+    {
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "hidden", @readonly = "readonly" } })
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt>
+            Số lượng:
+        </dt>
+        <dd>
+            <input type="number" min="1" max="@Model.amount" id="sale_amount" name="sale_amount" runat="server"   />
+        </dd>
+    </dl>
+    <input type="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" />
+    }
+</div>
+<p>
+    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
