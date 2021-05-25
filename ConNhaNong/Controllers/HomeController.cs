@@ -22,7 +22,7 @@ namespace ConNhaNong.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Đây là trang liên hệ";
 
             return View();
         }
