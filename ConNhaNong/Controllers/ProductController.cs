@@ -6,15 +6,13 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using ConNhaNong.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
+using ConNhaNong.ViewModels;
 
 namespace ConNhaNong.Controllers
 {
     public class ProductController : Controller
     {
         public Models.Model1 context = new Models.Model1();
-        public IHostingEnvironment _hostingEnvironment;
         // GET: Product
         public ActionResult Index()
         {
@@ -145,7 +143,16 @@ namespace ConNhaNong.Controllers
         }
         public ActionResult Cart()
         {
-            return View();
+            User Users = (User)Session["User"];
+            if (Users != null)
+            {
+                var ListProduct = Services.ProductServices.GetProductViewModel(Users);
+                return View(ListProduct);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
     }
 }
