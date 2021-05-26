@@ -45,11 +45,13 @@ namespace ConNhaNong.Controllers
                 }
                 else
                 {
+                    ViewBag.Error = "Sai tai khoản/ mật khẩu";
                     return View(user);
                 }
             }
             else
             {
+                ViewBag.Error = "Sai tai khoản/ mật khẩu";
                 return View(user);
             }
         }
@@ -73,11 +75,13 @@ namespace ConNhaNong.Controllers
                 }
                 else
                 {
+                    ViewBag.Error = "Email đã tồn tại";
                     return View(user);
                 }
             }
             else
             {
+                ViewBag.Error = "Email đã tồn tại";
                 return View(user);
             }
         }
