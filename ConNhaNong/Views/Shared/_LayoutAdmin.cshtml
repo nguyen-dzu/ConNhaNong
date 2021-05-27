@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -25,9 +24,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Đăng nhập", "Login", "Home")</li>
-                    <li>@Html.ActionLink("Đăng kí mới", "Register", "Home")</li>
+                    <li>@Html.ActionLink("Thêm sản phẩm mới", "Create", "product")</li>
+                    <li>@Html.ActionLink("Đăng xuất", "Logout", "Home")</li>
                 </ul>
+                <button type="button" class="btn btn-primary">
+                    <i class="fa fa-search"></i>
+                </button>
             </div>
         </div>
     </div>

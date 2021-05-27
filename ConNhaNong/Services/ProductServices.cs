@@ -10,7 +10,7 @@ namespace ConNhaNong.Services
     public static class ProductServices
     {
         public static Models.Model1 context = new Models.Model1();
-        public static void AddProduct(string Name, int? Amout, double? Price,string Image)
+        public static void AddProduct(string Name, int? Amout, double? Price,string Image,string Des)
         {
             string Id = Services.IDServices.RandomIDProduct(); 
             var product = context.products.Where(s => s.ID.Equals(Id)).FirstOrDefault();
@@ -24,6 +24,7 @@ namespace ConNhaNong.Services
             products.price = Price;
             products.amount = Amout;
             products.file_names = Image;
+            products.Descriptions = Des;
             context.products.Add(products);
             context.SaveChanges();
         }

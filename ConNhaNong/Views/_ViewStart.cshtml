@@ -1,10 +1,15 @@
 ﻿@{
-        if (Session["User"] != null)
-        {
-            Layout = "~/Views/Shared/_LayoutUsers.cshtml";
-        }
-        else 
-    { 
-        Layout = "~/Views/Shared/_Layout.cshtml"; 
+    if(Session["Admin"]!=null)
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    if (Session["User"] != null)
+    {
+        Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+    }
+    if(Session["User"]==null && Session["Admin"]==null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }
