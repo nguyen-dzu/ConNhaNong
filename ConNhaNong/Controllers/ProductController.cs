@@ -50,7 +50,7 @@ namespace ConNhaNong.Controllers
             FileStream f = new FileStream(Server.MapPath(filePath), FileMode.Create);
             file.InputStream.CopyTo(f);
             f.Close();
-            Services.ProductServices.AddProduct(Products.name_product, Products.amount, Products.price,fileName);
+            Services.ProductServices.AddProduct(Products.name_product, Products.amount, Products.price,fileName,Products.Descriptions);
             return RedirectToAction("Index","Home");
 
         }
