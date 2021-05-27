@@ -1,10 +1,10 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-
 namespace ConNhaNong.Models
 {
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public partial class Model1 : DbContext
     {
         public Model1()
@@ -14,6 +14,7 @@ namespace ConNhaNong.Models
 
         public virtual DbSet<Bill_new> Bill_new { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -63,13 +64,18 @@ namespace ConNhaNong.Models
                 .Property(e => e.ID_cart)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Discount>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<product>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<product>()
-                .Property(e => e.name_product)
+                .Property(e => e.file_names)
                 .IsUnicode(false);
+
             modelBuilder.Entity<User>()
                 .Property(e => e.ID)
                 .IsUnicode(false);

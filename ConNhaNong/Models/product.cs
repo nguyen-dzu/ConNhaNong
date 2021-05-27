@@ -20,5 +20,8 @@ namespace ConNhaNong.Models
 
         [StringLength(2000)]
         public string file_names { get; set; }
+
+        [StringLength(1000)]
+        public string Descriptions { get; set; }
     }
 }
