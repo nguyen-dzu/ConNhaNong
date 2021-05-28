@@ -1,4 +1,4 @@
-namespace ConNhaNong.Models
+﻿namespace ConNhaNong.Models
 {
     using System;
     using System.Collections.Generic;
@@ -19,9 +19,16 @@ namespace ConNhaNong.Models
         public string ID { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Địa chỉ Email không đúng định dạng")]
+        [Required(ErrorMessage = "Địa chỉ Email không được bỏ trống")]
         public string Email { get; set; }
 
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu phải nhiều hơn 6 kí tự")]
+        [MaxLength(25, ErrorMessage = "Mật khẩu phải ít hơn 25 kí tự")]
+        [Required(ErrorMessage = "Mật khẩu không được bỏ trống")]
+        [Display(Name = "Mật khẩu")]
+        [DataType(DataType.Password)]
         public string Passwords { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
