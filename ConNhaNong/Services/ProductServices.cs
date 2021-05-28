@@ -33,6 +33,10 @@ namespace ConNhaNong.Services
             var users = context.Users.Where(s => s.Email.Equals(user.Email)).FirstOrDefault();
             var listProduct = (context.Carts.Where(s => s.ID.Equals(users.ID)).Select(x => x.list)).FirstOrDefault();
             var listAmount = (context.Carts.Where(s => s.ID.Equals(users.ID)).Select(x => x.amount)).FirstOrDefault();
+            if(listProduct ==null || listAmount ==null)
+            {
+                return listView;
+            }
             if (!String.IsNullOrEmpty(listProduct.ToString()) && !String.IsNullOrEmpty(listAmount.ToString()))
             {
                 var listP = listProduct.ToString().Split(',');
@@ -41,18 +45,31 @@ namespace ConNhaNong.Services
                 foreach(var item in listP)
                 {
                     var product = context.products.Where(s => s.ID.Equals(item)).FirstOrDefault();
-                    ProductViewModel productView = new ProductViewModel();
-                    productView.Id = product.ID;
-                    productView.Name_Product = product.name_product;
-                    productView.Image = product.file_names;
-                    productView.Total = product.price;
-                    productView.Amount = int.Parse(listA[i]);
-                    listView.Add(productView);
-                    i++;
+                    if (product != null)
+                    {
+                        ProductViewModel productView = new ProductViewModel();
+                        productView.Id = product.ID;
+                        productView.Name_Product = product.name_product;
+                        productView.Image = product.file_names;
+                        productView.Total = product.price;
+                        productView.Amount = int.Parse(listA[i]);
+                        listView.Add(productView);
+                        i++;
+                    }
+                    else
+                    {
+                        i++;
+                        continue;
+                    }
                 }
                 return listView;
             }
-            return listView;
+            else 
+            { 
+               return listView; 
+            }
+            
+
         }
 
     }
