@@ -38,7 +38,7 @@ namespace ConNhaNong.Controllers
 
             if (ModelState.IsValid)
             { 
-                if(user.Email.Equals("admin@vanlanguni.com") && user.Passwords.Equals("connhanong"))
+                if(user.Email.Equals("admin@vanlanguni.vn") && user.Passwords.Equals("connhanong"))
                 {
                     Session.Add("Admin", user);
                     return RedirectToAction("Index");
