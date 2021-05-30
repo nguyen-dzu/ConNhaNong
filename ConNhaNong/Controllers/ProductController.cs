@@ -55,25 +55,25 @@ namespace ConNhaNong.Controllers
 
         }
         // GET: Product/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
+            if (products != null)
+            {
+                return View(products);
+            }
+            return View("Error.cshtml");
         }
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(product products)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var p = context.products.Where(s => s.ID.Equals(products.ID)).FirstOrDefault();
+            context.products.Remove(p);
+            context.products.Add(products);
+            context.SaveChanges();
+            return RedirectToAction("Details","product",new { id=products.ID});
         }
 
         // GET: Product/Delete/5
@@ -96,6 +96,7 @@ namespace ConNhaNong.Controllers
             var list = context.products.ToList();
             return View(list);
         }
+       
 
         // POST: Product/Delete/5
         [HttpPost]
