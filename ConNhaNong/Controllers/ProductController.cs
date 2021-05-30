@@ -77,9 +77,24 @@ namespace ConNhaNong.Controllers
         }
 
         // GET: Product/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
+            if (id == null)
+            {
+                return View("Error.cshtml");
+            }
+            else
+            {
+                context.products.Remove(products);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Manager_product()
+        {
+            var list = context.products.ToList();
+            return View(list);
         }
 
         // POST: Product/Delete/5
