@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace ConNhaNong.Controllers
         public ActionResult Details(string id)
         {
             var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
-            if(products != null)
+            if (products != null)
             {
                 return View(products);
             }
@@ -46,12 +47,12 @@ namespace ConNhaNong.Controllers
             string filePath = @"~\Images\" + fileName;
 
             //Save the Image File in Folder.
-           // file.SaveAs(Server.MapPath(filePath));
+            // file.SaveAs(Server.MapPath(filePath));
             FileStream f = new FileStream(Server.MapPath(filePath), FileMode.Create);
             file.InputStream.CopyTo(f);
             f.Close();
-            Services.ProductServices.AddProduct(Products.name_product, Products.amount, Products.price,fileName,Products.Descriptions);
-            return RedirectToAction("Index","Home");
+            Services.ProductServices.AddProduct(Products.name_product, Products.amount, Products.price, fileName, Products.Descriptions);
+            return RedirectToAction("Index", "Home");
 
         }
         // GET: Product/Edit/5
@@ -73,7 +74,7 @@ namespace ConNhaNong.Controllers
             context.products.Remove(p);
             context.products.Add(products);
             context.SaveChanges();
-            return RedirectToAction("Details","product",new { id=products.ID});
+            return RedirectToAction("Details", "product", new { id = products.ID });
         }
 
         // GET: Product/Delete/5
@@ -96,7 +97,7 @@ namespace ConNhaNong.Controllers
             var list = context.products.ToList();
             return View(list);
         }
-       
+
 
         // POST: Product/Delete/5
         [HttpPost]
@@ -122,7 +123,7 @@ namespace ConNhaNong.Controllers
                 SL = 1.ToString();
             }
             User Users = (User)Session["User"];
-            if (Users!=null)
+            if (Users != null)
             {
                 var users = context.Users.Where(s => s.Email.Equals(Users.Email)).FirstOrDefault();
                 if (users != null)
@@ -164,6 +165,112 @@ namespace ConNhaNong.Controllers
             {
                 var ListProduct = Services.ProductServices.GetProductViewModel(Users);
                 return View(ListProduct);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+        public ActionResult DeleteProctInCart(string Id)
+        {
+            User Users = (User)Session["User"];
+            if (Users != null)
+            {
+                var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();
+                if (!String.IsNullOrEmpty(ListCart))
+                {
+                    var ListAmount = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.amount).FirstOrDefault();
+                    var Amout = ListAmount.Split(',');
+                    var ListProduct = ListCart.Split(',');
+                    for (int i = 0; i < ListProduct.Length; i++)
+                    {
+                        if (ListProduct[i].Contains(Id))
+                        {
+                            Amout[i] = null;
+                            ListProduct[i] = null;
+                        }
+                    }
+                    ListCart = null;
+                    foreach (var item in ListProduct)
+                    {
+                        if (item != null)
+                        {
+                            ListCart += item + ",";
+                        }
+                    }
+                    ListAmount = null;
+                    foreach (var item in Amout)
+                    {
+                        if (item != null)
+                        {
+                            ListAmount += item + ",";
+                        }
+                    }
+                    var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
+                    Cart.list = ListCart;
+                    Cart.amount = ListAmount;
+                    context.SaveChanges();
+                    return RedirectToAction("Cart");
+                }
+                else
+                {
+                    return RedirectToAction("Cart");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult Modify(FormCollection form)
+        {
+            User Users = (User)Session["User"];
+            if (Users != null)
+            {
+                var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();
+                if (!String.IsNullOrEmpty(ListCart))
+                {
+                    var a = form.GetValue("item.Amount");
+                    var b = form.GetValue(form.GetKey(0));
+                    var ListAmount = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.amount).FirstOrDefault();
+                    var Amout = ListAmount.Split(',');
+                    var ListProduct = ListCart.Split(',');
+                    for (int i = 0; i < ListProduct.Length; i++)
+                    {
+                        if (ListProduct[i].Contains(b.AttemptedValue.ToString()))
+                        {
+                            Amout[i] = a.AttemptedValue.ToString();
+                        }
+                    }
+                    ListCart = null;
+                    foreach (var item in ListProduct)
+                    {
+                        if (item != null)
+                        {
+                            ListCart += item + ",";
+                        }
+                    }
+                    ListCart = ListCart.Substring(0, ListCart.Length - 1);
+                    ListAmount = null;
+                    foreach (var item in Amout)
+                    {
+                        if (item != null)
+                        {
+                            ListAmount += item + ",";
+                        }
+                    }
+                    ListAmount = ListAmount.Substring(0, ListAmount.Length - 1);
+                    var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
+                    Cart.list = ListCart;
+                    Cart.amount = ListAmount;
+                    context.SaveChanges();
+                    return RedirectToAction("Cart");
+                }
+                else
+                {
+                    return RedirectToAction("Cart");
+                }
             }
             else
             {
