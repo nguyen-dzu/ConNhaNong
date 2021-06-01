@@ -52,7 +52,7 @@ namespace ConNhaNong.Services
                         productView.Id = product.ID;
                         productView.Name_Product = product.name_product;
                         productView.Image = product.file_names;
-                        productView.Total = product.price;
+                        productView.Total = int.Parse(listA[i]) * product.price;
                         productView.Amount = int.Parse(listA[i]);
                         listView.Add(productView);
                         i++;
