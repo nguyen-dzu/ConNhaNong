@@ -176,8 +176,7 @@ namespace ConNhaNong.Controllers
                         cart.amount += "," + SL.ToString();
                         context.SaveChanges();
                     }
-                    var cart__ = context.Carts;
-                    return View(cart__);
+                    return RedirectToAction("Cart");
                 }
                 else
                 {
@@ -267,36 +266,46 @@ namespace ConNhaNong.Controllers
                     var ListAmount = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.amount).FirstOrDefault();
                     var Amout = ListAmount.Split(',');
                     var ListProduct = ListCart.Split(',');
-                    for (int i = 0; i < ListProduct.Length; i++)
+                    int SL = int.Parse(a.AttemptedValue.ToString());
+                    if (SL <= 0)
                     {
-                        if (ListProduct[i].Contains(b.AttemptedValue.ToString()))
-                        {
-                            Amout[i] = a.AttemptedValue.ToString();
-                        }
+                        ViewBag.Error = "Số lượng phải lớn hơn 1";
+                        var ListP = Services.ProductServices.GetProductViewModel(Users);
+                        return View("Cart", ListP);
                     }
-                    ListCart = null;
-                    foreach (var item in ListProduct)
+                    else
                     {
-                        if (item != null)
+                        for (int i = 0; i < ListProduct.Length; i++)
                         {
-                            ListCart += item + ",";
+                            if (ListProduct[i].Contains(b.AttemptedValue.ToString()))
+                            {
+                                Amout[i] = a.AttemptedValue.ToString();
+                            }
                         }
-                    }
-                    ListCart = ListCart.Substring(0, ListCart.Length - 1);
-                    ListAmount = null;
-                    foreach (var item in Amout)
-                    {
-                        if (item != null)
+                        ListCart = null;
+                        foreach (var item in ListProduct)
                         {
-                            ListAmount += item + ",";
+                            if (item != null)
+                            {
+                                ListCart += item + ",";
+                            }
                         }
+                        ListCart = ListCart.Substring(0, ListCart.Length - 1);
+                        ListAmount = null;
+                        foreach (var item in Amout)
+                        {
+                            if (item != null)
+                            {
+                                ListAmount += item + ",";
+                            }
+                        }
+                        ListAmount = ListAmount.Substring(0, ListAmount.Length - 1);
+                        var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
+                        Cart.list = ListCart;
+                        Cart.amount = ListAmount;
+                        context.SaveChanges();
+                        return RedirectToAction("Cart");
                     }
-                    ListAmount = ListAmount.Substring(0, ListAmount.Length - 1);
-                    var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
-                    Cart.list = ListCart;
-                    Cart.amount = ListAmount;
-                    context.SaveChanges();
-                    return RedirectToAction("Cart");
                 }
                 else
                 {
