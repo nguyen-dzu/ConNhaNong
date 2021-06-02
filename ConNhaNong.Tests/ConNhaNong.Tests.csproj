@@ -98,6 +98,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConNhaNong\ConNhaNong.csproj">
+      <Project>{b9f63a4d-a980-49ee-b9da-69f386e335fd}</Project>
+      <Name>ConNhaNong</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

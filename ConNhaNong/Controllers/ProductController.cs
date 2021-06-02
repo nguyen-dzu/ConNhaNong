@@ -121,28 +121,71 @@ namespace ConNhaNong.Controllers
                 context.products.Remove(products);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Manager_product", "Product");
         }
         public ActionResult Manager_product()
         {
             var list = context.products.ToList();
             return View(list);
         }
-
-
-        // POST: Product/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        //Thêm vào xác nhận thanh toán
+        public ActionResult Deliver()
         {
-            try
+            User Users = (User)Session["User"];
+            if (Users == null)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Login","Home");
             }
-            catch
+            else
             {
-                return View();
+                var ListProduct = Services.ProductServices.GetProductViewModel(Users);
+                Bill_new bill = new Bill_new();
+                bill.name_bill = Users.Email;
+                double? tong = 0;
+                foreach(var item in ListProduct)
+                {
+                    tong += item.Total;
+                }
+                bill.total = tong;
+                var tuple = new Tuple<Bill_new, List<ProductViewModel>>(bill, ListProduct);
+                return View(tuple);
+            }
+        }
+        [HttpPost]
+        public ActionResult Deliver(FormCollection bill)
+        {
+            User Users = (User)Session["User"];
+            if (Users == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                var ListProduct = Services.ProductServices.GetProductViewModel(Users);
+                Bill_new bill_new = new Bill_new();
+                bill_new.name_bill = bill.GetValue(bill.GetKey(1)).AttemptedValue;
+                bill_new.SDt = bill.GetValue(bill.GetKey(3)).AttemptedValue;
+                bill_new.addresz = bill.GetValue(bill.GetKey(2)).AttemptedValue;
+                bill_new.ID = Users.ID;
+                var pd = context.Carts.Where(sx => sx.User.Email.Equals(Users.Email)).FirstOrDefault();
+                bill_new.amount = pd.amount;
+                bill_new.list = pd.list;
+                var s = Services.IDServices.RandomIDBill();
+                var bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
+                while (bills != null) {
+                    s = Services.IDServices.RandomIDBill();
+                    bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
+                }
+                bill_new.ID_bill = s;
+                double? tong = 0;
+                foreach (var item in ListProduct)
+                {
+                    tong += item.Total;
+                }
+                bill_new.total = tong;
+                context.Bill_new.Add(bill_new);
+                context.SaveChanges();
+                return Content("Đặt hàng thành công");
             }
         }
         [HttpPost]

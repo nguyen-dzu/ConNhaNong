@@ -49,5 +49,26 @@ namespace ConNhaNong.Services
             }
             return s;
         }
+        public static string RandomIDBill()
+        {
+            string s = "DIl";
+            Random random = new Random();
+
+            for (int i = 0; i <= 5; i++)
+            {
+                int r = random.Next(0, 2);
+                if (r == 0)
+                {
+                    int ran = random.Next(0, 9);
+                    s += ran.ToString();
+                }
+                else
+                {
+                    int ran = random.Next('A', 'Z');
+                    s += ((char)ran).ToString();
+                }
+            }
+            return s;
+        }
     }
 }
