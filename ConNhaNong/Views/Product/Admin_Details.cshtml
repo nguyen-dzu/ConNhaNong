@@ -1,0 +1,53 @@
+﻿@model ConNhaNong.Models.product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+        <h4>product</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "hidden", @readonly = "readonly" } })
+            <div class="ima">
+                <img class="card-img-top img-fluid" src="~/Images/@Model.file_names" alt="Card image cap" width="400" />
+            </div>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.name_product)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name_product)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.price)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.amount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.amount)
+            </dd>
+
+            <dt>
+                Số lượng:
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descriptions)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descriptions)
+            </dd>
+        </dl>
+</div>
