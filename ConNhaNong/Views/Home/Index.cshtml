@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ConNhaNong.Models.product>
 
 @{
-   
+
     ViewBag.Title = "Home Page";
 }
 
@@ -14,6 +14,13 @@
                     <h2>Latest Products</h2>
                 </div>
             </div>
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Find by name: @Html.TextBox("SearchString")
+                    <input type="submit" value="Search" />
+                </p>
+            }
 
         </div>
         <!-- Nav Card -->
@@ -26,21 +33,21 @@
                             <div class="col-lg-3">
                                 <div class="card mb-30">
                                     <!-- set a width on the image otherwise it will expand to full width       -->
-                                    <img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="350"/>
+                                    <img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="350" />
                                     <div class="card-body text-center">
-                                            <h4 class="card-title">@items.name_product</h4>
-                                            <p class="card-text">@items.price</p>
-                                            @Html.ActionLink("Xem sản phẩm", "Details", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-success" })
-                                        </div>
+                                        <h4 class="card-title">@items.name_product</h4>
+                                        <p class="card-text">@items.price</p>
+                                        @Html.ActionLink("Xem sản phẩm", "Details", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-success" })
                                     </div>
+                                </div>
 
                             </div>
                             <div class="col-lg-1"></div>
                         }
                     </div>
-                    </div>
+                </div>
             </div>
-        <!-- End Nav Card -->
+            <!-- End Nav Card -->
         </div>
     </div>
 </section>

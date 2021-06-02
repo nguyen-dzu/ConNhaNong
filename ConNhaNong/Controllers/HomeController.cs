@@ -14,10 +14,14 @@ namespace ConNhaNong.Controllers
         {
 
         }
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var list = context.products.ToList();
-            return View(list);
+            var list = from s in context.products select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.name_product.Contains(searchString));
+            }
+            return View(list.ToList()) ;
         }
 
         public ActionResult About()
