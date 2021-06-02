@@ -23,11 +23,42 @@ namespace ConNhaNong.Controllers
         public ActionResult Details(string id)
         {
             var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
-            if(products != null)
+            User Users = (User)Session["Admin"];
+            if (Users != null)
             {
-                return View(products);
+                return RedirectToAction("Admin_Details", new { id = id });
             }
-            return View("Error.cshtml");
+            else
+            {
+                if (products != null)
+                {
+                    return View(products);
+                }
+                else
+                {
+                    return View("Error.cshtml");
+                }
+            }
+        }
+        public ActionResult Admin_Details(string id)
+        {
+            var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
+            User Users = (User)Session["Admin"];
+            if (Users != null)
+            {
+                if (products != null)
+                {
+                    return View(products);
+                }
+                else
+                {
+                    return View("Error.cshtml");
+                }
+            }
+            else
+            {
+                return View("Error.cshtml");
+            }
         }
 
         // GET: Product/Create
