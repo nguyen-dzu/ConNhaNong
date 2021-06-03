@@ -152,40 +152,61 @@ namespace ConNhaNong.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Deliver(FormCollection bill)
         {
             User Users = (User)Session["User"];
-            if (Users == null)
+            var isNumeric = long.TryParse(bill.GetValue(bill.GetKey(3)).AttemptedValue, out long n);
+            if (isNumeric && bill.GetValue(bill.GetKey(3)).AttemptedValue.Length==10)
             {
-                return RedirectToAction("Login", "Home");
+                if (Users == null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                else
+                {
+                    var ListProduct = Services.ProductServices.GetProductViewModel(Users);
+                    Bill_new bill_new = new Bill_new();
+                    bill_new.name_bill = bill.GetValue(bill.GetKey(1)).AttemptedValue;
+                    bill_new.SDt = bill.GetValue(bill.GetKey(3)).AttemptedValue;
+                    bill_new.addresz = bill.GetValue(bill.GetKey(2)).AttemptedValue;
+                    bill_new.ID = Users.ID;
+                    var pd = context.Carts.Where(sx => sx.User.Email.Equals(Users.Email)).FirstOrDefault();
+                    bill_new.amount = pd.amount;
+                    bill_new.list = pd.list;
+                    var s = Services.IDServices.RandomIDBill();
+                    var bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
+                    while (bills != null)
+                    {
+                        s = Services.IDServices.RandomIDBill();
+                        bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
+                    }
+                    bill_new.ID_bill = s;
+                    double? tong = 0;
+                    foreach (var item in ListProduct)
+                    {
+                        tong += item.Total;
+                    }
+                    bill_new.total = tong;
+                    context.Bill_new.Add(bill_new);
+                    context.SaveChanges();
+                    return Content("Đặt hàng thành công");
+                }
             }
             else
             {
+                ViewBag.PhoneNumber = "Số điện thoại không hợp lệ";
                 var ListProduct = Services.ProductServices.GetProductViewModel(Users);
-                Bill_new bill_new = new Bill_new();
-                bill_new.name_bill = bill.GetValue(bill.GetKey(1)).AttemptedValue;
-                bill_new.SDt = bill.GetValue(bill.GetKey(3)).AttemptedValue;
-                bill_new.addresz = bill.GetValue(bill.GetKey(2)).AttemptedValue;
-                bill_new.ID = Users.ID;
-                var pd = context.Carts.Where(sx => sx.User.Email.Equals(Users.Email)).FirstOrDefault();
-                bill_new.amount = pd.amount;
-                bill_new.list = pd.list;
-                var s = Services.IDServices.RandomIDBill();
-                var bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
-                while (bills != null) {
-                    s = Services.IDServices.RandomIDBill();
-                    bills = context.Bill_new.Where(x => x.ID_bill.Equals(s)).FirstOrDefault();
-                }
-                bill_new.ID_bill = s;
+                Bill_new billl = new Bill_new();
+                billl.name_bill = Users.Email;
                 double? tong = 0;
                 foreach (var item in ListProduct)
                 {
                     tong += item.Total;
                 }
-                bill_new.total = tong;
-                context.Bill_new.Add(bill_new);
-                context.SaveChanges();
-                return Content("Đặt hàng thành công");
+                billl.total = tong;
+                var tuple = new Tuple<Bill_new, List<ProductViewModel>>(billl, ListProduct);
+                return View(tuple);
             }
         }
         [HttpPost]
