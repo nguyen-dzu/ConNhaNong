@@ -17,7 +17,7 @@
         public double? price { get; set; }
 
         [Display(Name = "Số lượng còn lại")]
-        [DataType(DataType.Text)]
+        
         public int? amount { get; set; }
 
         [Display(Name = "Tên sản phẩm")]
