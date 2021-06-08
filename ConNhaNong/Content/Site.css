@@ -1,4 +1,8 @@
-﻿body {
+﻿img{
+    width: 100%;
+    height:100%;
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -21,4 +25,40 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.logo {
+    position: relative;
+    width: 40%;
+}
+.img-home{
+    position: relative;
+    width: 100%;
+    height: 65rem;
+}
+.logo img {
+    width: 10rem;
+    height: 10rem;
+}
+#navbar-main {
+    background: #efd7bd;
+}
+#col-menu {
+    position: relative;
+    width: 60%;
+    float: left;
+    padding-top: 25px;
+}
+#col-menu ul li a{
+    font-size: 18px;
+    color: #004012;
+}
+#col-menu ul li :hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+ .connhanong {
+    text-align: center;
+    width: 70%;
+    margin: 10px 60px;
+    position: absolute;
 }

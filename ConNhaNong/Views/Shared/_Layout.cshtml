@@ -10,19 +10,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="navbar-main" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
+                    <div class="navbar-header logo">
+                        <a href="~/Home/About"><img src="~/Images/logo-connhanong.png" /></a>
+                    </div>
+            <div id="col-menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
                     <li>@Html.ActionLink("Trang chủ", "About", "Home")</li>
                     <li>@Html.ActionLink("Về chúng tôi", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Sản phẩm", "Index", "Home")</li>
@@ -32,6 +26,7 @@
             </div>
         </div>
     </div>
+    <img class="img-home" src="~/Images/mountains-615428_1920.jpg"/>
     <div class="container body-content">
         @RenderBody()
         <hr />
