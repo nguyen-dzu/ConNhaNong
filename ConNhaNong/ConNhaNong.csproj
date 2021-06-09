@@ -237,6 +237,7 @@
     <Content Include="Views\Product\Cart.cshtml" />
     <Content Include="Views\Product\Admin_Details.cshtml" />
     <Content Include="Views\Product\Deliver.cshtml" />
+    <Content Include="Views\Product\DeliverSucess.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
