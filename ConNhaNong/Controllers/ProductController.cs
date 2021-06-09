@@ -190,7 +190,7 @@ namespace ConNhaNong.Controllers
                     bill_new.total = tong;
                     context.Bill_new.Add(bill_new);
                     context.SaveChanges();
-                    return Content("Đặt hàng thành công");
+                    return RedirectToAction("DeliverSucess");
                 }
             }
             else
@@ -380,6 +380,10 @@ namespace ConNhaNong.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+        }
+        public ActionResult DeliverSucess()
+        {
+            return View();
         }
     }
 }
