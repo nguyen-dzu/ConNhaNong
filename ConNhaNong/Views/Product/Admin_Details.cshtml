@@ -3,48 +3,53 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact {
+        display: none;
+    }
+</style>
 <h2>Details</h2>
 
 <div>
-        <h4>product</h4>
-        <hr />
-        <dl class="dl-horizontal">
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
 
-            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "hidden", @readonly = "readonly" } })
-            <div class="ima">
-                <img class="card-img-top img-fluid" src="~/Images/@Model.file_names" alt="Card image cap" width="400" />
-            </div>
+        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "hidden", @readonly = "readonly" } })
+        <div class="ima">
+            <img class="card-img-top img-fluid" src="~/Images/@Model.file_names" alt="Card image cap" width="400" />
+        </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.name_product)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.name_product)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.name_product)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.name_product)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.price)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.price)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.amount)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.amount)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.amount)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.amount)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Descriptions)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriptions)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Descriptions)
-            </dd>
-        </dl>
+        <dd>
+            @Html.DisplayFor(model => model.Descriptions)
+        </dd>
+    </dl>
 </div>

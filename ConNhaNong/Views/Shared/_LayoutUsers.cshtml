@@ -9,17 +9,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="navbar-main" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-header logo">
+                <a href="~/Home/About"><img src="~/Images/logo-connhanong.png" /></a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div id="col-menu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
                     <li>@Html.ActionLink("Trang chủ", "About", "Home")</li>
@@ -31,13 +26,55 @@
             </div>
         </div>
     </div>
+    <img class="img-product" src="~/Images/product.jpg" />
+    <img class="img-home" src="~/Images/mountains-615428_1920.jpg" />
+    <img class="img-contact" src="~/Images/boy-1822614_1920.jpg" />
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <hr />
+    <footer>
+        <img src="~/Images/asd.jpg" />
+        <div class="content-footer">
+            <div class="info">
+                <h3>LIÊN HỆ</h3>
+                <div style="margin: 0; width: 100px;" class="line"></div>
+                <h5>SDT: &emsp; &emsp; &emsp;  &emsp; 0935&nbsp;763&nbsp;729</h5>
+                <h5>EMAIL:  &emsp; &emsp; &emsp; &nbsp;vu.197pm31229@vanlanguni.vn</h5>
+                <h5>ĐỊA CHỈ:  &emsp; &emsp;&emsp;69/68 Đặng Thùy Trâm, P. 13,<br />&emsp; &emsp;&emsp;&emsp; &emsp;&emsp; &nbsp; Q. Bình Thạnh, Tp.Hồ Chí Minh</h5>
+                <h3>THEO DÕI CON NHÀ NÔNG:</h3>
+                <div class="icon">
+                    <a href="https://www.facebook.com/nguyenvu0410"> <i class="fab fa-facebook-square"></i></a>
+                    <a href="https://twitter.com/z1Hoangvu1z"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/nguyen_dzu__/"> <i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="menu">
+                <h4>INFO MAIN</h4>
+                <div style="margin: 0; width: 100px;" class="line"></div>
+                <ul id="list-menu" class="nav">
+                    <li id="menu-link">@Html.ActionLink("Trang chủ", "About", "Home")</li>
+                    <li id="menu-link">@Html.ActionLink("Về chúng tôi", "Contact", "Home")</li>
+                    <li id="menu-link">@Html.ActionLink("Sản phẩm", "Index", "Home")</li>
+                    <li id="menu-link">@Html.ActionLink("Đăng nhập", "Login", "Home")</li>
+                    <li id="menu-link">@Html.ActionLink("Đăng kí mới", "Register", "Home")</li>
+                </ul>
+            </div>
+            <div class="new">
+                <div class="demo">
+                    <div class="name">
+                        <h3>CON NHÀ NÔNG</h3>
+                        <span>
+                            Nơi Mang Lại Dư Vị Ngọt Ngào<br />
+                            Phong Vị Hoài Cổ
+                        </span>
+                    </div>
+                    <img src="~/Images/logocontract.jpg" />
+                </div>
+                <div class="desigh">Connhanong © 2021, All right rerserved, Design by NguyenDzu  </div>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -3,14 +3,19 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact {
+        display: none;
+    }
+</style>
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>product</h4>
         <hr />

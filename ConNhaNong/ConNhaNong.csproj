@@ -195,6 +195,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\asd.jpg" />
+    <Content Include="Images\freeship.jpg" />
+    <Content Include="Images\logocontract.jpg" />
+    <Content Include="Images\boy-1822614_1920.jpg" />
+    <Content Include="Images\logo-connhanong.png" />
+    <Content Include="Images\mountains-615428_1920.jpg" />
+    <Content Include="Images\product.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -242,7 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

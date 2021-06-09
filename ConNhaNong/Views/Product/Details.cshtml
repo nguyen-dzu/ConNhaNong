@@ -4,63 +4,144 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact {
+        display: none;
+    }
+</style>
+<div id="name-product">
+    <h2 style="text-align: center">XEM SẢN PHẨM</h2>
+    <div style="background: #004012;" class="line"></div>
+</div>
 <div>
     @using (Html.BeginForm("AddCart", "Product", new { ID_P = Model.ID }))
     {
-        <h4>product</h4>
         <hr />
-        <dl class="dl-horizontal">
+
+        <h4>SẢN PHẨM</h4>
+        <div id="create-product" class="dl-horizontal">
 
             @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "hidden", @readonly = "readonly" } })
-            <div class="ima">
+            <div class="img">
                 <img class="card-img-top img-fluid" src="~/Images/@Model.file_names" alt="Card image cap" width="400" />
             </div>
+            <div class="Information">
+                <div>
+                    <span class="cell">
+                        @Html.DisplayNameFor(model => model.name_product):
+                    </span>
+                    <span class="cell-1">
+                        @Html.DisplayFor(model => model.name_product)
+                    </span>
+                </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.name_product)
-            </dt>
+                <div>
+                    <span class="cell">
+                        @Html.DisplayNameFor(model => model.price):
+                    </span>
+                    <span class="cell-1">
+                        @Html.DisplayFor(model => model.price)
+                    </span>
+                </div>
+                <div>
+                    <span class="cell">
+                        @Html.DisplayNameFor(model => model.amount):
+                    </span>
+                    <span class="cell-1">
+                        @Html.DisplayFor(model => model.amount)
+                    </span>
+                </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.name_product)
-            </dd>
+                <div>
+                    <span class="cell">
+                        @Html.DisplayNameFor(model => model.Descriptions):
+                    </span>
+                    <span class="cell-1">
+                        @Html.DisplayFor(model => model.Descriptions)
+                    </span>
+                </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.price)
-            </dt>
+                <div class="create-giohang">
+                    <span class="cell">
+                        Số lượng:
+                    </span>
 
-            <dd>
-                @Html.DisplayFor(model => model.price)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.amount)
-            </dt>
+                    <div class="cell-1">
+                        <input type="number" min="1" max="@Model.amount" value="1" id="sale_amount" name="sale_amount" runat="server" />
+                    </div>
+                    <input id="button-create" type="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" />
+                    <span>
+                        <button class="button-back">
+                            @Html.ActionLink("Back to List", "Index", "Home")
+                        </button>
+                    </span>
+                </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.amount)
-            </dd>
+            </div>
 
-            <dt>
-                Số lượng:
-            </dt>
-
-            <dd>
-                <input type="number" min="1" max="@Model.amount" value="1" id="sale_amount" name="sale_amount" runat="server" />
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Descriptions)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Descriptions)
-            </dd>
-        </dl>
-        <input type="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" />
+        </div>
     }
 </div>
-<p>
-    
+<div class="line-long"></div>
+<img style="margin-top: 20px;" src="~/Images/freeship.jpg"/>
+<div class="line-long"></div>
+<div id="name-product" style="margin-bottom: 20px;">
+    <h2 style="text-align: center">SẢN PHẨM LIÊN QUAN</h2>
+    <div style="background: #004012;" class="line"></div>
+</div>
+<div class="col-lg-3">
+    <div class="card mb-30">
+        <!-- set a width on the image otherwise it will expand to full width       -->
+        <img class="card-img-top img-fluid" src="/Images/cat-1.jpg" alt="Card image cap" width="350">
+        <div class="card-body text-center">
+            <h4 class="card-title">Hạt điều</h4>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <p class="card-text">170000</p>
+            <a class="btn btn-success" href="/Product/Details/SP6N4F34">Xem sản phẩm</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-3">
+    <div class="card mb-30">
+        <!-- set a width on the image otherwise it will expand to full width       -->
+        <img class="card-img-top img-fluid" src="/Images/hanhnhan.jpg" alt="Card image cap" width="350">
+        <div class="card-body text-center">
+            <h4 class="card-title">Hạnh Nhân Rang Bơ</h4>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <p class="card-text">180000</p>
+            <a class="btn btn-success" href="/Product/Details/SPG4E55R">Xem sản phẩm</a>
+        </div>
+    </div>
 
-    @Html.ActionLink("Back to List", "Index", "Home")
-</p>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-3">
+    <div class="card mb-30">
+        <!-- set a width on the image otherwise it will expand to full width       -->
+        <img class="card-img-top img-fluid" src="/Images/hatsachi.jpg" alt="Card image cap" width="350">
+        <div class="card-body text-center">
+            <h4 class="card-title">Hạt Sachi</h4>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <p class="card-text">120000</p>
+            <a class="btn btn-success" href="/Product/Details/SPJCL4WV">Xem sản phẩm</a>
+        </div>
+    </div>
+
+</div>
+<div class="col-lg-1"></div>

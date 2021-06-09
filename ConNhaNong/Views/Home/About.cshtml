@@ -1,7 +1,235 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-contact {
+        display: none;
+    }
+    .img-product{
+        display: none;
+    }
+</style>
+<div class="connhanong">
+    <hr />
+    <div class="h2">
+        <h2>CON NHÀ NÔNG</h2>
+        <div class="line"></div>
+    </div>
+    <span>
+        Là những kỉ niệm hoài cổ của xa xưa, chúng tôi mong tim lại và mang lại những phong vị đã mất,
+        những mùi hương quen thuộc tưởng chừng như đã bị lãng quên, khôi phục nguyên vẹn sự tỉ mỉ chăm
+        chút của thế hệ trước, trước cả khi món ăn trở thành tên đường phố, trước cả khi thương mại hóa đặc sắc
+        vùng miền. chỉ mong mỗi bữa ăn là hạnh phúc giản đơn, thuần khiết.
+    </span>
+    <hr />
+    <button class="xemthem"> <a href="~/Home/Contact">Xem Thêm</a></button>
+</div>
+<section id="content-product" class="latest-product-area padding-bottom">
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-end align-items-end">
+            <!-- Section Tittle -->
+            <div id="title-product" class="col-xl-4 col-lg-5 col-md-5">
+                <div class="section-tittle mb-30">
+                    <h2>SẢN PHẨM MỚI</h2>
+                <div class="line" style="background: #004012"></div>
+                </div>
+                <form action="/" method="post">
+                    <p>
+                         <input id="SearchString" name="SearchString" type="text" value="" placeholder="Tìm kiếm sản phẩm">
+                        <input id="button-search" type="submit" value="Tìm Kiếm">
+                    </p>
+                </form>
+            </div>
+            
+        </div>
+        <!-- Nav Card -->
+        <div class="tab-content" id="nav-tabContent">
+            <div class="row">
+                <div class="card-deck">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/botcacao.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Bột cacao</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">120000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SP164QG0">Xem sản phẩm</a>
+                                </div>
+                            </div>
 
-<p>Use this area to provide additional information.</p>
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/quatang.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Quà tặng chân tình</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">550000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SP1BT50J">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/caphebot.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Cà phê bột</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">120000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SP3L8CKI">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/cat-1.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạt điều</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">170000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SP6N4F34">Xem sản phẩm</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/hanhnhan.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạnh Nhân Rang Bơ</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">180000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SPG4E55R">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/hatsachi.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạt Sachi</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">120000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SPJCL4WV">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    </div>
+            </div>
+            <!-- End Nav Card -->
+        </div>
+    </div>
+</section>
+<a href="#">
+    <img class="free-ship" src="~/Images/freeship.jpg" /> 
+</a>
+<section id="content-product" class="latest-product-area padding-bottom">
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-end align-items-end">
+            <!-- Section Tittle -->
+            <div id="title-product" class="col-xl-4 col-lg-5 col-md-5" >
+                <div class="section-tittle mb-30" style="margin: auto; text-align: center;">
+                    <h2>SẢN PHẨM BÁN CHẠY</h2>
+                    <div class="line" style="background: #004012"></div>
+                </div>
+            </div>
+</div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/cat-1.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạt điều</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">170000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SP6N4F34">Xem sản phẩm</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/hanhnhan.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạnh Nhân Rang Bơ</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">180000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SPG4E55R">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <div class="card mb-30">
+                                <!-- set a width on the image otherwise it will expand to full width       -->
+                                <img class="card-img-top img-fluid" src="/Images/hatsachi.jpg" alt="Card image cap" width="350">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Hạt Sachi</h4>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <p class="card-text">120000</p>
+                                    <a class="btn btn-success" href="/Product/Details/SPJCL4WV">Xem sản phẩm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1"></div>
+</div>
+</section>
