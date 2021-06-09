@@ -2,31 +2,37 @@
 
 @{
 
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact {
+        display: none;
+    }
+</style>
 
 <section class="latest-product-area padding-bottom">
-	<div class="container">
-		<div class="row product-btn d-flex justify-content-end align-items-end">
-			<!-- Section Tittle -->
-			<div class="col-xl-4 col-lg-5 col-md-5">
-				<div class="section-tittle mb-30">
-					<h2>Latest Products</h2>
-				</div>
-			</div>
+    <div class="container">
+        <div class="row product-btn d-flex justify-content-end align-items-end">
+            <!-- Section Tittle -->
+            <div class="col-xl-4 col-lg-5 col-md-5">
+                <div class="section-tittle mb-30">
+                    <h2>Latest Products</h2>
+                </div>
+            </div>
 
-		</div>
-		<!-- Nav Card -->
-		<div class="tab-content" id="nav-tabContent">
-			<div class="row">
-				<div class="card-deck">
-					<div class="row">
-						@foreach (var items in Model)
-						{
-							<div class="col-lg-3">
-								<div class="card mb-30">
-									<!-- set a width on the image otherwise it will expand to full width       -->
-									<img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="350" />
+        </div>
+        <!-- Nav Card -->
+        <div class="tab-content" id="nav-tabContent">
+            <div class="row">
+                <div class="card-deck">
+                    <div class="row">
+                        @foreach (var items in Model)
+                        {
+                            <div class="col-lg-3">
+                                <div class="card mb-30">
+                                    <!-- set a width on the image otherwise it will expand to full width       -->
+                                    <img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="350" />
                                     <div class="card-body text-center">
                                         <h4 class="card-title">@items.name_product</h4>
                                         <p class="card-text">@items.price</p>
@@ -35,15 +41,15 @@
                                        "", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-danger" })
                                         @Html.ActionLink("Sửa sản phẩm", "Edit", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-primary" })
                                     </div>
-								</div>
+                                </div>
 
-							</div>
-							<div class="col-lg-1"></div>
-						}
-					</div>
-				</div>
-			</div>
-			<!-- End Nav Card -->
-		</div>
-	</div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- End Nav Card -->
+        </div>
+    </div>
 </section>

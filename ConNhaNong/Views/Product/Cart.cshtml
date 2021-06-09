@@ -3,7 +3,12 @@
 @{
     ViewBag.Title = "Cart";
 }
-
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact {
+        display: none;
+    }
+</style>
 <h2>Cart</h2>
 
 <div class="form-horizontal">
@@ -30,25 +35,27 @@
                         @Html.ValidationMessageFor(model => item.Amount, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="text-danger">
-                        @ViewBag.Error
+                <div class="content-cart">
+                    <div class="form-group">
+                        <div class="text-danger">
+                            @ViewBag.Error
+                        </div>
+                        <div class="col-md-10">
+                            <img style="width: 40rem;" class="card-img-top img-fluid" src="~/Images/@item.Image" alt="Card image cap" />
+                        </div>
                     </div>
-                    <div class="col-md-10">
-                        <img class="card-img-top img-fluid" src="~/Images/@item.Image" alt="Card image cap" width="350" />
+                    <div class="money">
+                        <div class="form-group">
+                            <div style="width: 100%;" class="col-md-10">
+                                <h3>Thành tiền: @item.Total</h3>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Xóa", "DeleteProctInCart", new { id = item.Id }, new { @class = "btn btn-alert" })
+                            <input type="submit" value="Xác nhận" class="btn btn-success" />
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <h3>Thành tiền: @item.Total</h3>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.ActionLink("Xem sản phẩm", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Xóa", "DeleteProctInCart", new { id = item.Id }, new { @class = "btn btn-alert" })
-                    <input type="submit" value="Xác nhận" class="btn btn-success" />
                 </div>
             }
             <hr />
@@ -61,7 +68,7 @@
             <h3>Xin lỗi, bạn không có sản phẩm nào trong giỏ hàng</h3>
         </div>
         <div class="text-center">
-            @Html.ActionLink("Về trang chủ","Index","Home",null, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Về trang chủ", "Index", "Home", null, new { @class = "btn btn-success" })
         </div>
     }
 </div>
