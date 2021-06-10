@@ -3,7 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact, .img-product {
+        display: none;
+    }
+</style>
 <h2>Index</h2>
 
 <p>
@@ -26,26 +31,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date_end)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name_discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description_discount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_end)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description_discount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
