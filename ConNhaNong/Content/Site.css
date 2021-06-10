@@ -209,7 +209,7 @@ footer img{
     position: absolute;
     top: 25%;
     display: grid;
-    grid-template-columns: 561px 410px 500px;
+    grid-template-columns: 60% 40% 40%;
 }
 .info {
     color: #fff;
