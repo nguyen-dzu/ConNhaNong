@@ -11,7 +11,7 @@ namespace ConNhaNong.Models
             : base("name=Model1")
         {
         }
-
+        //test demo
         public virtual DbSet<Bill_new> Bill_new { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
