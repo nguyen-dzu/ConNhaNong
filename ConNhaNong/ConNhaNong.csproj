@@ -178,6 +178,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Bill_newController.cs" />
     <Compile Include="Controllers\DiscountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -260,6 +261,11 @@
     <Content Include="Views\Discounts\Details.cshtml" />
     <Content Include="Views\Discounts\Edit.cshtml" />
     <Content Include="Views\Discounts\Index.cshtml" />
+    <Content Include="Views\Bill_new\Create.cshtml" />
+    <Content Include="Views\Bill_new\Delete.cshtml" />
+    <Content Include="Views\Bill_new\Details.cshtml" />
+    <Content Include="Views\Bill_new\Edit.cshtml" />
+    <Content Include="Views\Bill_new\Index.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
