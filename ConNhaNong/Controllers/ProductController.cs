@@ -189,6 +189,11 @@ namespace ConNhaNong.Controllers
                     }
                     bill_new.total = tong;
                     context.Bill_new.Add(bill_new);
+                    var Cart = context.Carts.Where(x=> x.User.Email == Users.Email).FirstOrDefault();
+                    if(Cart != null)
+                    {
+                        context.Carts.Remove(Cart);
+                    }
                     context.SaveChanges();
                     return RedirectToAction("DeliverSucess");
                 }
@@ -301,8 +306,8 @@ namespace ConNhaNong.Controllers
                         }
                     }
                     var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
-                    Cart.list = ListCart;
-                    Cart.amount = ListAmount;
+                    Cart.list = ListCart.Substring(0, ListCart.Length - 1);
+                    Cart.amount = ListAmount.Substring(0, ListAmount.Length - 1); ;
                     context.SaveChanges();
                     return RedirectToAction("Cart");
                 }
