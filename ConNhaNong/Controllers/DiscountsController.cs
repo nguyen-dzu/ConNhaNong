@@ -10,7 +10,7 @@ using ConNhaNong.Models;
 
 namespace ConNhaNong.Controllers
 {
-    [Authorize]
+
     public class DiscountsController : Controller
     {
         private Model1 db = new Model1();
