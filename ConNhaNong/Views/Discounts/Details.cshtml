@@ -9,12 +9,22 @@
         display: none;
     }
 </style>
-<h2>Details</h2>
+<div class="title-product" style="position: relative; width: 100%;">
+    <h2 style="color: #004012;">Thông Tin Mã Giảm Giá</h2>
+    <div style="background: #004012;" class="line"></div>
+</div>
 
 <div>
     <h4>Discount</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Date_active)
         </dt>
