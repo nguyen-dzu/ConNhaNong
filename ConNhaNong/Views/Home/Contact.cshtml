@@ -1,17 +1,37 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home {
+        display: none;
+    }
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    .img-contact {
+        width: 100%;
+        height: 65rem;
+    }
+    .img-product{
+        display: none;
+    }
+    
+</style>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="title-contact">
+    <h3>THÔNG TIN</h3>
+    <h2 >CON NHÀ NÔNG</h2>
+    <div class="line"></div>
+</div>
+<div class="text-contract">
+    <img class="logo-contract"  src="~/Images/logocontract.jpg"/>
+    <div class="text-main">
+        <h3>GIÁ TRỊ LÀM NÊN </h3>
+        <h2 id="name-transition">CON NHÀ NÔNG</h2>
+        Chúng tôi, Con Nhà Nông. Những con người muốn giữ lại kỷ niệm đẹp của tuổi thơ, những mùi hương xưa cũ bằng sự tử tế và tôn trọng. <br /> <br />
+       <span class="text-row"> " Là những người hoài cổ, chúng tôi mong đi tìm lại những phong vị đã mất, những mùi hương quen thuộc tưởng chừng đã bị lãng quên, khôi phục nguyên vẹn sự tỉ mỉ chăm chút của thế hệ trước, 
+           trước cả khi món ăn trở thành tên đường phố, trước cả khi thương mại hóa đặc sắc vùng miền. chỉ mong mỗi bữa ăn là hạnh phúc giản đơn, thuần khiết." <br /> <br /></span>
+        Nhà Của Ngoại là nơi chúng tôi mang đến cho bạn những trải nghiệm như chính Ngoại của tôi vậy
+    </div>
+</div>

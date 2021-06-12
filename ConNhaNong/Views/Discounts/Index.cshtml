@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ConNhaNong.Models.Discount>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact, .img-product {
+        display: none;
+    }
+</style>
+<div class="index">
+    <div class="title-product" style="position: relative; width: 100%;">
+        <h2 style="color: #004012;">Danh Sách Mã Giảm Giá</h2>
+        <div style="background: #004012;" class="line"></div>
+    </div>
+        <button class="button-back" style="width: 15rem; height: 5rem;">
+            @Html.ActionLink("Create New", "Create")
+        </button>
+
+    
+    <table class="table" style="position: relative;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_end)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name_discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description_discount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_end)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name_discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description_discount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,79 @@
+﻿@model ConNhaNong.Models.Bill_new
+
+@{
+    ViewBag.Title = "Details";
+}
+<script src="https://kit.fontawesome.com/47800f97b7.js" crossorigin="anonymous"></script>
+<style>
+    .img-home, .img-contact, .img-product {
+        display: none;
+    }
+</style>
+<h2>Details</h2>
+
+<div>
+    <h4>Bill_new</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.list)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.list)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addresz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addresz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_bill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_bill)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_bill }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
