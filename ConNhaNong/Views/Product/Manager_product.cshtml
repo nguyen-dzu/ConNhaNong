@@ -36,6 +36,7 @@
                                     <div class="card-body text-center">
                                         <h4 class="card-title">@items.name_product</h4>
                                         <p class="card-text">@items.price</p>
+                                        
                                         @Html.ActionLink("Xem sản phẩm", "Details", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-success" })
                                         @Html.ActionLink("Xóa sản phẩm", "Delete" +
                                        "", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-danger" })
