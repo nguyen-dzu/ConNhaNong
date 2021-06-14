@@ -213,12 +213,15 @@
     <Content Include="Images\logo-connhanong.png" />
     <Content Include="Images\mountains-615428_1920.jpg" />
     <Content Include="Images\product.jpg" />
+    <Content Include="Images\Product\beccuon.jpg" />
+    <Content Include="Images\Product\hatmacca.jpg" />
     <Content Include="Images\Product\botcacao.jpg" />
     <Content Include="Images\Product\caphebot.jpg" />
     <Content Include="Images\Product\caphehat.jpg" />
     <Content Include="Images\Product\hanhnhan.jpg" />
     <Content Include="Images\Product\hatdieu.jpg" />
     <Content Include="Images\Product\hatsachi.jpg" />
+    <Content Include="Images\Product\hattieu.jpg" />
     <Content Include="Images\Product\quatang.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
