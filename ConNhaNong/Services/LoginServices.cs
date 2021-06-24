@@ -46,7 +46,7 @@ namespace ConNhaNong.Services
             {
                 Id = Services.IDServices.RandomIDUser();
             }
-            Models.User user = new Models.User();
+            Models.Users user = new Models.Users();
             user.Email = Email;
             user.Passwords = Pass;
             user.ID = Id;

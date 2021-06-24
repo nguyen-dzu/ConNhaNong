@@ -18,7 +18,7 @@ namespace ConNhaNong.Services
             {
                 Id = Services.IDServices.RandomIDUser();
             }
-            Models.product products = new Models.product();
+            Models.products products = new Models.products();
             products.ID = Id;
             products.name_product = Name;
             products.price = Price;
@@ -28,12 +28,12 @@ namespace ConNhaNong.Services
             context.products.Add(products);
             context.SaveChanges();
         }
-        public static List<ProductViewModel> GetProductViewModel(User user)
+        public static List<ProductViewModel> GetProductViewModel(Users user)
         {
             var listView = new List<ProductViewModel>();
             var users = context.Users.Where(s => s.Email.Equals(user.Email)).FirstOrDefault();
-            var listProduct = (context.Carts.Where(s => s.ID.Equals(users.ID)).Select(x => x.list)).FirstOrDefault();
-            var listAmount = (context.Carts.Where(s => s.ID.Equals(users.ID)).Select(x => x.amount)).FirstOrDefault();
+            var listProduct = (context.Cart.Where(s => s.ID.Equals(users.ID)).Select(x => x.list)).FirstOrDefault();
+            var listAmount = (context.Cart.Where(s => s.ID.Equals(users.ID)).Select(x => x.amount)).FirstOrDefault();
             if(listProduct ==null || listAmount ==null)
             {
                 return listView;

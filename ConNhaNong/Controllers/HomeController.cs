@@ -37,7 +37,7 @@ namespace ConNhaNong.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.User user)
+        public ActionResult Login(Models.Users user)
         {
 
             if (ModelState.IsValid)
@@ -72,7 +72,7 @@ namespace ConNhaNong.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Models.User user)
+        public ActionResult Register(Models.Users user)
         {
             if (ModelState.IsValid)
             {

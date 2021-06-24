@@ -17,7 +17,7 @@ namespace ConNhaNong.Controllers
         // GET: Bill_new
         public ActionResult Index()
         {
-            var bill_new = db.Bill_new.Include(b => b.User);
+            var bill_new = db.Bill_new.Include(b => b.Users);
             return View(bill_new.ToList());
         }
 

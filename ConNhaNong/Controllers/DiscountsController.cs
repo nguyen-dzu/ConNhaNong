@@ -18,7 +18,7 @@ namespace ConNhaNong.Controllers
         // GET: Discounts
         public ActionResult Index()
         {
-            return View(db.Discounts.ToList());
+            return View(db.Discount.ToList());
         }
 
         // GET: Discounts/Details/5
@@ -28,7 +28,7 @@ namespace ConNhaNong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Discount discount = db.Discounts.Find(id);
+            Discount discount = db.Discount.Find(id);
             if (discount == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace ConNhaNong.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Discounts.Add(discount);
+                db.Discount.Add(discount);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace ConNhaNong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Discount discount = db.Discounts.Find(id);
+            Discount discount = db.Discount.Find(id);
             if (discount == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace ConNhaNong.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Discount discount = db.Discounts.Find(id);
+            Discount discount = db.Discount.Find(id);
             if (discount == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace ConNhaNong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Discount discount = db.Discounts.Find(id);
-            db.Discounts.Remove(discount);
+            Discount discount = db.Discount.Find(id);
+            db.Discount.Remove(discount);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

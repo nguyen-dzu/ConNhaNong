@@ -22,6 +22,6 @@ namespace ConNhaNong.Models
         [StringLength(10)]
         public string ID_cart { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Users Users { get; set; }
     }
 }
