@@ -1,4 +1,4 @@
-namespace ConNhaNong.Models
+﻿namespace ConNhaNong.Models
 {
     using System;
     using System.Collections.Generic;
@@ -22,6 +22,7 @@ namespace ConNhaNong.Models
         public int? amount { get; set; }
 
         [StringLength(100)]
+        [Display(Name ="Tên sản phẩm")]
         public string name_product { get; set; }
 
         [StringLength(2000)]

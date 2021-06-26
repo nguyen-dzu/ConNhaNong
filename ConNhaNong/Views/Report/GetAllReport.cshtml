@@ -1,0 +1,50 @@
+﻿@using ConNhaNong.Models;
+@model IEnumerable<Report>
+
+@{
+    ViewBag.Title = "Danh sách thông tin liên hệ";
+}
+
+<h2>Danh sách thông tin liên hệ</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Email_send)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().products.name_product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Notes)
+        </th>
+        <th>
+            Trạng thái:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email_send)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.products.name_product)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status_report)
+            </td>
+            <td>
+                <a href="@Url.Action("Details","Product",new { id=item.id_product })" class="btn btn-info">Xem sản phẩm</a>
+                <a href="@Url.Action("confirm","Report",new { id=item.id })" class="btn btn-default">xác nhận</a>
+                <a href="@Url.Action("delete","Report",new { id=item.id })" class="btn btn-danger">xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>
