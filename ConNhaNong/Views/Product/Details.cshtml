@@ -77,6 +77,7 @@
                         <button class="button-back">
                             @Html.ActionLink("Back to List", "Index", "Home")
                         </button>
+                        <a href="@Url.Action("AddReport", "Report", new { ProductId=Model.ID} )" class="btn btn-danger">Báo cáo</a>
                     </span>
                 </div>
 

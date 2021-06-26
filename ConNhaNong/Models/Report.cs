@@ -1,4 +1,4 @@
-namespace ConNhaNong.Models
+﻿namespace ConNhaNong.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,9 +15,13 @@ namespace ConNhaNong.Models
         public string id_product { get; set; }
 
         [StringLength(100)]
+        [Display(Name ="Email người gửi")]
         public string Email_send { get; set; }
 
         [StringLength(1000)]
+        [Display(Name ="Ghi chú")]
+        [Required(ErrorMessage ="Ghi chú không được bỏ trống")]
+        [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
         [StringLength(20)]

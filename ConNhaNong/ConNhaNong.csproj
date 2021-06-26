@@ -183,6 +183,7 @@
     <Compile Include="Controllers\DiscountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +280,9 @@
     <Content Include="Views\Contact\AddContact.cshtml" />
     <Content Include="Views\Contact\ContactSuccess.cshtml" />
     <Content Include="Views\Contact\GetAllContact.cshtml" />
+    <Content Include="Views\Report\AddReport.cshtml" />
+    <Content Include="Views\Report\ReportSuccess.cshtml" />
+    <Content Include="Views\Report\GetAllReport.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
