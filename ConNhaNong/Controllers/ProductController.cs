@@ -26,7 +26,7 @@ namespace ConNhaNong.Controllers
         {
             var products = context.products.Find(id);
 
-            User Users = (User)Session["Admin"];
+            Users Users = (Users)Session["Admin"];
             if (Users != null)
             {
                 return RedirectToAction("Admin_Details", new { id = id });
@@ -48,7 +48,7 @@ namespace ConNhaNong.Controllers
         public ActionResult Admin_Details(string id)
         {
             var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
-            User Users = (User)Session["Admin"];
+            Users Users = (Users)Session["Admin"];
             if (Users != null)
             {
                 if (products != null)
@@ -69,6 +69,8 @@ namespace ConNhaNong.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewBag.product_category = new SelectList(context.Categories, "category_id", "category_id");
+
             return View();
         }
 
@@ -140,7 +142,8 @@ namespace ConNhaNong.Controllers
         //Thêm vào xác nhận thanh toán
         public ActionResult Deliver()
         {
-            Users Users = (Users)Session["Admin"];
+            Users Users = (Users)Session["User"];
+
             if (Users == null)
             {
                 return RedirectToAction("Login", "Home");
@@ -164,7 +167,7 @@ namespace ConNhaNong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Deliver(FormCollection bill)
         {
-            Users Users = (Users)Session["Admin"];
+            Users Users = (Users)Session["User"];
             var isNumeric = long.TryParse(bill.GetValue(bill.GetKey(3)).AttemptedValue, out long n);
             if (isNumeric && bill.GetValue(bill.GetKey(3)).AttemptedValue.Length == 10)
             {
@@ -231,7 +234,7 @@ namespace ConNhaNong.Controllers
             {
                 SL = 1.ToString();
             }
-            User Users = (User)Session["Admin"];
+            Users Users = (Users)Session["User"];
             if (Users != null)
             {
                 var users = context.Users.Where(s => s.Email.Equals(Users.Email)).FirstOrDefault();
@@ -268,7 +271,7 @@ namespace ConNhaNong.Controllers
         }
         public ActionResult Cart()
         {
-            Users Users = (Users)Session["Admin"];
+            Users Users = (Users)Session["User"];
             if (Users != null)
             {
                 var ListProduct = Services.ProductServices.GetProductViewModel(Users);
@@ -281,7 +284,7 @@ namespace ConNhaNong.Controllers
         }
         public ActionResult DeleteProctInCart(string Id)
         {
-            User Users = (User)Session["Admin"];
+            Users Users = (Users)Session["User"];
             if (Users != null)
             {
                 var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();
@@ -333,7 +336,7 @@ namespace ConNhaNong.Controllers
         [HttpPost]
         public ActionResult Modify(FormCollection form)
         {
-            Users Users = (Users)Session["Admin"];
+            Users Users = (Users)Session["User"];
             if (Users != null)
             {
                 var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();
