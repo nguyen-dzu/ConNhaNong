@@ -12,7 +12,7 @@ namespace ConNhaNong.Controllers
 {
     public class Bill_newController : Controller
     {
-        private Model1 db = new Model1();
+        private CT25Team18Entities1 db = new CT25Team18Entities1();
 
         // GET: Bill_new
         public ActionResult Index()

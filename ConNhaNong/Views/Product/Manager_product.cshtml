@@ -32,10 +32,11 @@
                             <div class="col-lg-3">
                                 <div class="card mb-30">
                                     <!-- set a width on the image otherwise it will expand to full width       -->
-                                    <img class="card-img-top img-fluid" src="~/Images/@items.file_names" alt="Card image cap" width="350" />
+                                    <img class="card-img-top img-fluid" src="~/Images/Product/@items.file_names" alt="Card image cap" width="350" />
                                     <div class="card-body text-center">
                                         <h4 class="card-title">@items.name_product</h4>
                                         <p class="card-text">@items.price</p>
+                                        
                                         @Html.ActionLink("Xem sản phẩm", "Details", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-success" })
                                         @Html.ActionLink("Xóa sản phẩm", "Delete" +
                                        "", "Product", new { id = items.ID.ToString() }, new { @class = "btn btn-danger" })

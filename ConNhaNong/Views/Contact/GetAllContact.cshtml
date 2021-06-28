@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ConNhaNong.Models.Contact>
+
+@{
+    ViewBag.Title = "Danh sách thông tin liên hệ";
+}
+<style>
+    .img-home, .img-contact, img-product {
+        display: none;
+    }
+</style>
+<h2>Danh sách thông tin liên hệ</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name_contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberPhone)
+        </th>
+        <th>
+            Trạng thái:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name_contact)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberPhone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status_contact)
+    </td>
+    <td>
+        <a href="@Url.Action("confirm","contact",new { id=item.id })" class="btn btn-info">xác nhận</a>
+        <a href="@Url.Action("delete","contact",new { id=item.id })" class="btn btn-danger">xóa</a>
+    </td>
+</tr>
+    }
+
+</table>

@@ -8,7 +8,7 @@ namespace ConNhaNong.Services
 {
     public static class LoginServices
     {
-        public static Models.Model1 context = new Models.Model1();
+        public static CT25Team18Entities1 context = new CT25Team18Entities1();
         public static bool Login(string Email, string Pass)
         {
             var User = context.Users.Where(s => s.Email.Equals(Email)).FirstOrDefault();
@@ -46,7 +46,7 @@ namespace ConNhaNong.Services
             {
                 Id = Services.IDServices.RandomIDUser();
             }
-            Models.User user = new Models.User();
+            User user = new User();
             user.Email = Email;
             user.Passwords = Pass;
             user.ID = Id;

@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CT25Team18Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill_new">
+          <Key>
+            <PropertyRef Name="ID_bill" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="10" />
+          <Property Name="list" Type="varchar" MaxLength="2000" />
+          <Property Name="amount" Type="varchar" MaxLength="2000" />
+          <Property Name="total" Type="float" />
+          <Property Name="addresz" Type="varchar" MaxLength="1000" />
+          <Property Name="SDt" Type="varchar" MaxLength="20" />
+          <Property Name="name_bill" Type="varchar" MaxLength="50" />
+          <Property Name="ID_bill" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="ID_cart" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="10" />
+          <Property Name="list" Type="varchar" MaxLength="2000" />
+          <Property Name="amount" Type="varchar" MaxLength="2000" />
+          <Property Name="ID_cart" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="category_desc" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Name_contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumberPhone" Type="varchar" MaxLength="20" />
+          <Property Name="Status_contact" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Date_active" Type="datetime" />
+          <Property Name="Date_end" Type="datetime" />
+          <Property Name="Name_discount" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description_discount" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="float" />
+          <Property Name="amount" Type="int" />
+          <Property Name="name_product" Type="nvarchar" MaxLength="100" />
+          <Property Name="file_names" Type="varchar" MaxLength="2000" />
+          <Property Name="Descriptions" Type="nvarchar" MaxLength="1000" />
+          <Property Name="product_category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_product" Type="varchar" MaxLength="30" />
+          <Property Name="Email_send" Type="varchar" MaxLength="100" />
+          <Property Name="Notes" Type="varchar" MaxLength="1000" />
+          <Property Name="Status_report" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Passwords" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Bill_new__ID__7A3223E8">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Bill_new" Type="Self.Bill_new" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_new">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__ID__7B264821">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__produc__382F5661">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="product_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_product">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CT25Team18ModelStoreContainer">
+          <EntitySet Name="Bill_new" EntityType="Self.Bill_new" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bill_new__ID__7A3223E8" Association="Self.FK__Bill_new__ID__7A3223E8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bill_new" EntitySet="Bill_new" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__ID__7B264821" Association="Self.FK__Cart__ID__7B264821">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__produc__382F5661" Association="Self.FK__products__produc__382F5661">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="id_product" Association="Self.id_product">
+            <End Role="products" EntitySet="products" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CT25Team18Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bill_new">
+          <Key>
+            <PropertyRef Name="ID_bill" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="list" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Double" />
+          <Property Name="addresz" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SDt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="name_bill" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_bill" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Bill_new__ID__7A3223E8" FromRole="Bill_new" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="ID_cart" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="list" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ID_cart" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Cart__ID__7B264821" FromRole="Cart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category_desc" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="products" Relationship="Self.FK__products__produc__382F5661" FromRole="Category" ToRole="products" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name_contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status_contact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_active" Type="DateTime" Precision="3" />
+          <Property Name="Date_end" Type="DateTime" Precision="3" />
+          <Property Name="Name_discount" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description_discount" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="name_product" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="file_names" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptions" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="product_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__products__produc__382F5661" FromRole="products" ToRole="Category" />
+          <NavigationProperty Name="Reports" Relationship="Self.id_product" FromRole="products" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_product" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email_send" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Status_report" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="Self.id_product" FromRole="Report" ToRole="products" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Passwords" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bill_new" Relationship="Self.FK__Bill_new__ID__7A3223E8" FromRole="Users" ToRole="Bill_new" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__ID__7B264821" FromRole="Users" ToRole="Cart" />
+        </EntityType>
+        <Association Name="FK__Bill_new__ID__7A3223E8">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Bill_new" Type="Self.Bill_new" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill_new">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__ID__7B264821">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__produc__382F5661">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="product_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_product">
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CT25Team18Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bill_new" EntityType="Self.Bill_new" />
+          <EntitySet Name="Carts" EntityType="Self.Cart" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Discounts" EntityType="Self.Discount" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Bill_new__ID__7A3223E8" Association="Self.FK__Bill_new__ID__7A3223E8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bill_new" EntitySet="Bill_new" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__ID__7B264821" Association="Self.FK__Cart__ID__7B264821">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__produc__382F5661" Association="Self.FK__products__produc__382F5661">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="id_product" Association="Self.id_product">
+            <End Role="products" EntitySet="products" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CT25Team18ModelStoreContainer" CdmEntityContainer="CT25Team18Entities1">
+          <EntitySetMapping Name="Bill_new">
+            <EntityTypeMapping TypeName="CT25Team18Model.Bill_new">
+              <MappingFragment StoreEntitySet="Bill_new">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="list" ColumnName="list" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="addresz" ColumnName="addresz" />
+                <ScalarProperty Name="SDt" ColumnName="SDt" />
+                <ScalarProperty Name="name_bill" ColumnName="name_bill" />
+                <ScalarProperty Name="ID_bill" ColumnName="ID_bill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="CT25Team18Model.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="list" ColumnName="list" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="ID_cart" ColumnName="ID_cart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CT25Team18Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_desc" ColumnName="category_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="CT25Team18Model.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name_contact" ColumnName="Name_contact" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="Status_contact" ColumnName="Status_contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="CT25Team18Model.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date_active" ColumnName="Date_active" />
+                <ScalarProperty Name="Date_end" ColumnName="Date_end" />
+                <ScalarProperty Name="Name_discount" ColumnName="Name_discount" />
+                <ScalarProperty Name="Description_discount" ColumnName="Description_discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="CT25Team18Model.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="name_product" ColumnName="name_product" />
+                <ScalarProperty Name="file_names" ColumnName="file_names" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="CT25Team18Model.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="Email_send" ColumnName="Email_send" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Status_report" ColumnName="Status_report" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CT25Team18Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CT25Team18Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

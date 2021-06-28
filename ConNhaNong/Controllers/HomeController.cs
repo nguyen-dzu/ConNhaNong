@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ConNhaNong.Models;
 using ConNhaNong.Services;
 
 namespace ConNhaNong.Controllers
 {
     public class HomeController : Controller
     {
-        public Models.Model1 context = new Models.Model1();
+        private CT25Team18Entities1 db = new CT25Team18Entities1();
         public HomeController()
         {
 
         }
         public ActionResult Index(string searchString)
         {
-            var list = from s in context.products select s;
+            var list = db.products;
             if (!String.IsNullOrEmpty(searchString))
             {
-                list = list.Where(s => s.name_product.Contains(searchString));
+                list = (System.Data.Entity.DbSet<product>)list.Where(s => s.name_product.Contains(searchString));
             }
-            return View(list.ToList()) ;
+            return View(list) ;
         }
 
         public ActionResult About()
@@ -37,7 +38,7 @@ namespace ConNhaNong.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.User user)
+        public ActionResult Login(Users user)
         {
 
             if (ModelState.IsValid)
@@ -72,7 +73,7 @@ namespace ConNhaNong.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Models.User user)
+        public ActionResult Register(Users user)
         {
             if (ModelState.IsValid)
             {

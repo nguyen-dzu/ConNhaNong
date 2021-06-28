@@ -13,7 +13,8 @@ namespace ConNhaNong.Controllers
 {
     public class ProductController : Controller
     {
-        public Models.Model1 context = new Models.Model1();
+        private CT25Team18Entities1 context = new CT25Team18Entities1();
+
         // GET: Product
         public ActionResult Index()
         {
@@ -23,7 +24,8 @@ namespace ConNhaNong.Controllers
         // GET: Product/Details/5
         public ActionResult Details(string id)
         {
-            var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
+            var products = context.products.Find(id);
+
             User Users = (User)Session["Admin"];
             if (Users != null)
             {
@@ -33,6 +35,8 @@ namespace ConNhaNong.Controllers
             {
                 if (products != null)
                 {
+                    ViewBag.product_category = new SelectList(context.Categories, "category_id", "category_id", products.product_category);
+
                     return View(products);
                 }
                 else
@@ -89,9 +93,11 @@ namespace ConNhaNong.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(string id)
         {
-            var products = context.products.Where(s => s.ID.Equals(id)).FirstOrDefault();
+            var products = context.products.Find(id);
             if (products != null)
             {
+                ViewBag.product_category = new SelectList(context.Categories, "category_id", "category_id", products.product_category);
+
                 return View(products);
             }
             return View("Error.cshtml");
@@ -99,13 +105,16 @@ namespace ConNhaNong.Controllers
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(product products)
+        public ActionResult Edit([Bind(Include = "ID,price,amount,name_product,file_names,Descriptions,product_category")]  product product)
         {
-            var p = context.products.Where(s => s.ID.Equals(products.ID)).FirstOrDefault();
-            context.products.Remove(p);
-            context.products.Add(products);
-            context.SaveChanges();
-            return RedirectToAction("Details", "product", new { id = products.ID });
+
+            if (ModelState.IsValid)
+            {
+                context.Entry(product).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Details", "product", new { id = product.ID });
+            }
+            return RedirectToAction("Details", "product", new { id = product.ID });
         }
 
         // GET: Product/Delete/5
@@ -131,10 +140,10 @@ namespace ConNhaNong.Controllers
         //Thêm vào xác nhận thanh toán
         public ActionResult Deliver()
         {
-            User Users = (User)Session["User"];
+            Users Users = (Users)Session["Admin"];
             if (Users == null)
             {
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login", "Home");
             }
             else
             {
@@ -142,7 +151,7 @@ namespace ConNhaNong.Controllers
                 Bill_new bill = new Bill_new();
                 bill.name_bill = Users.Email;
                 double? tong = 0;
-                foreach(var item in ListProduct)
+                foreach (var item in ListProduct)
                 {
                     tong += item.Total;
                 }
@@ -155,9 +164,9 @@ namespace ConNhaNong.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Deliver(FormCollection bill)
         {
-            User Users = (User)Session["User"];
+            Users Users = (Users)Session["Admin"];
             var isNumeric = long.TryParse(bill.GetValue(bill.GetKey(3)).AttemptedValue, out long n);
-            if (isNumeric && bill.GetValue(bill.GetKey(3)).AttemptedValue.Length==10)
+            if (isNumeric && bill.GetValue(bill.GetKey(3)).AttemptedValue.Length == 10)
             {
                 if (Users == null)
                 {
@@ -189,6 +198,11 @@ namespace ConNhaNong.Controllers
                     }
                     bill_new.total = tong;
                     context.Bill_new.Add(bill_new);
+                    var Cart = context.Carts.Where(x => x.User.Email == Users.Email).FirstOrDefault();
+                    if (Cart != null)
+                    {
+                        context.Carts.Remove(Cart);
+                    }
                     context.SaveChanges();
                     return RedirectToAction("DeliverSucess");
                 }
@@ -217,7 +231,7 @@ namespace ConNhaNong.Controllers
             {
                 SL = 1.ToString();
             }
-            User Users = (User)Session["User"];
+            User Users = (User)Session["Admin"];
             if (Users != null)
             {
                 var users = context.Users.Where(s => s.Email.Equals(Users.Email)).FirstOrDefault();
@@ -254,7 +268,7 @@ namespace ConNhaNong.Controllers
         }
         public ActionResult Cart()
         {
-            User Users = (User)Session["User"];
+            Users Users = (Users)Session["Admin"];
             if (Users != null)
             {
                 var ListProduct = Services.ProductServices.GetProductViewModel(Users);
@@ -267,7 +281,7 @@ namespace ConNhaNong.Controllers
         }
         public ActionResult DeleteProctInCart(string Id)
         {
-            User Users = (User)Session["User"];
+            User Users = (User)Session["Admin"];
             if (Users != null)
             {
                 var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();
@@ -301,8 +315,8 @@ namespace ConNhaNong.Controllers
                         }
                     }
                     var Cart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).FirstOrDefault();
-                    Cart.list = ListCart;
-                    Cart.amount = ListAmount;
+                    Cart.list = ListCart.Substring(0, ListCart.Length - 1);
+                    Cart.amount = ListAmount.Substring(0, ListAmount.Length - 1); ;
                     context.SaveChanges();
                     return RedirectToAction("Cart");
                 }
@@ -319,7 +333,7 @@ namespace ConNhaNong.Controllers
         [HttpPost]
         public ActionResult Modify(FormCollection form)
         {
-            User Users = (User)Session["User"];
+            Users Users = (Users)Session["Admin"];
             if (Users != null)
             {
                 var ListCart = context.Carts.Where(s => s.User.Email.Contains(Users.Email)).Select(s => s.list).FirstOrDefault();

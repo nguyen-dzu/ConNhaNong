@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a105a025f80441ad9292cb37dd479917" Name="Diagram1">
+        <EntityTypeShape EntityType="CT25Team18Model.Bill_new" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.Cart" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.Category" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.Contact" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.Discount" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.product" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.Report" Width="1.5" PointX="10.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.sysdiagram" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team18Model.User" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="CT25Team18Model.FK__Bill_new__ID__7A3223E8" ManuallyRouted="false" />
+        <AssociationConnector Association="CT25Team18Model.FK__Cart__ID__7B264821" ManuallyRouted="false" />
+        <AssociationConnector Association="CT25Team18Model.FK__products__produc__382F5661" ManuallyRouted="false" />
+        <AssociationConnector Association="CT25Team18Model.id_product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

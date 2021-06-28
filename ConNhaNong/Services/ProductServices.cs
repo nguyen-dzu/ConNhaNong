@@ -9,7 +9,7 @@ namespace ConNhaNong.Services
 {
     public static class ProductServices
     {
-        public static Models.Model1 context = new Models.Model1();
+        public static CT25Team18Entities1 context = new CT25Team18Entities1();
         public static void AddProduct(string Name, int? Amout, double? Price,string Image,string Des)
         {
             string Id = Services.IDServices.RandomIDProduct(); 
@@ -18,7 +18,8 @@ namespace ConNhaNong.Services
             {
                 Id = Services.IDServices.RandomIDUser();
             }
-            Models.product products = new Models.product();
+             
+            product products = new product();
             products.ID = Id;
             products.name_product = Name;
             products.price = Price;
@@ -28,7 +29,7 @@ namespace ConNhaNong.Services
             context.products.Add(products);
             context.SaveChanges();
         }
-        public static List<ProductViewModel> GetProductViewModel(User user)
+        public static List<ProductViewModel> GetProductViewModel(Users user)
         {
             var listView = new List<ProductViewModel>();
             var users = context.Users.Where(s => s.Email.Equals(user.Email)).FirstOrDefault();
